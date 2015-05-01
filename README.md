@@ -23,3 +23,8 @@ The current version installs the following services on the VM:
 
     vagrant up
     vagrant ssh
+
+# Shared folders
+
+The workspace folder is mounted to the VM under /vagrant/workspace. 
+Put your files (sources, ...) in this folder to be able to access the files from your guest and host systems. 
