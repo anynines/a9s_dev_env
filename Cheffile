@@ -1,0 +1,14 @@
+site "http://community.opscode.com/api/v1"
+
+cookbook 'apt'
+cookbook 'build-essential'
+cookbook 'ruby_build'
+cookbook 'nodejs'
+cookbook 'rbenv', git: 'https://github.com/aminin/chef-rbenv'
+cookbook 'vim'
+
+# services
+cookbook 'mongodb', '~> 0.16.2'
+cookbook 'postgresql', '~> 3.4.18'
+cookbook 'rabbitmq', '~> 4.0.0'
+cookbook 'redis2', '~> 0.5.1'
