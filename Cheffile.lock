@@ -16,6 +16,7 @@ SITE
       yum (~> 3.0)
       yum-epel (>= 0.0.0)
       yum-erlang_solutions (>= 0.0.0)
+    golang (1.5.0)
     homebrew (1.12.0)
       build-essential (>= 2.1.2)
     mongodb (0.16.2)
@@ -73,6 +74,7 @@ GIT
 DEPENDENCIES
   apt (>= 0)
   build-essential (>= 0)
+  golang (~> 1.5.0)
   mongodb (~> 0.16.2)
   nodejs (>= 0)
   postgresql (~> 3.4.18)

@@ -16,7 +16,17 @@ Vagrant.configure(2) do |config|
 
   # Forward the Rails server default port to the host
   # config.vm.network :forwarded_port, guest: 3000, host: 3000
-  
+  # postgresql
+  config.vm.network :forwarded_port, guest: 5432, host: 5432
+  # mongodb
+  config.vm.network :forwarded_port, guest: 27017, host: 27017
+  # redis
+  config.vm.network :forwarded_port, guest: 6379, host: 6379
+  # rabbitmq
+  config.vm.network :forwarded_port, guest: 5672, host: 5672
+  config.vm.network :forwarded_port, guest: 15671, host: 15671
+
+
   # synced folders
   config.vm.synced_folder "workspace/", "/vagrant/workspace"
 
@@ -30,14 +40,15 @@ Vagrant.configure(2) do |config|
     chef.add_recipe "rbenv::user"
     chef.add_recipe "rbenv::vagrant"
     chef.add_recipe "vim"
-    chef.add_recipe "redis2::default"
+    chef.add_recipe "redis2::default_instance"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::client"
     chef.add_recipe "mongodb::default"
     chef.add_recipe "rabbitmq::default"
+    chef.add_recipe "rabbitmq::mgmt_console"
+    chef.add_recipe "golang::default"
 
     # Install Ruby 2.2.1 and Bundler
-    # Set an empty root password for PostgreSQL to make things simple
     chef.json = {
       rbenv: {
         user_installs: [{
@@ -51,9 +62,39 @@ Vagrant.configure(2) do |config|
           }
         }]
       },
+      go: {
+        version: '1.4.2'
+      },
+      rabbitmq: {
+        web_console_ssl: true,
+        web_console_ssl_port: 15671
+      },
       postgresql: {
+        config: {
+          log_rotation_age: "1d",
+          log_rotation_size: "10MB",
+          log_filename: "postgresql-%Y-%m-%d_%H%M%S.log"
+        },
+        # pg_hba: [
+        #   {
+        #     comment: '# allow all local connections without auth',
+        #     type: 'local',
+        #     db: 'all',
+        #     user: 'all',
+        #     addr: nil,
+        #     method: 'trust'
+        #   },
+        #   {
+        #     comment: '# allow all connections from outside via md5 passwords',
+        #     type: 'host',
+        #     db: 'all',
+        #     user: 'all',
+        #     addr: nil,
+        #     method: 'md5'
+        #   }
+        # ],
         password: {
-          postgres: ''
+          postgres: 'test123!'
         }
       }
     }
