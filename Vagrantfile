@@ -70,6 +70,7 @@ Vagrant.configure(2) do |config|
         web_console_ssl_port: 15671
       },
       postgresql: {
+        version: '9.3',
         config: {
           log_rotation_age: "1d",
           log_rotation_size: "10MB",
