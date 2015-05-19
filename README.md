@@ -14,7 +14,10 @@ All services can be accessed from the host system using their default ports and 
 
 # Prerequisites
 
-* [Install vagrant](https://www.vagrantup.com/downloads.html)
+* [Install Virtualbox](https://www.virtualbox.org/wiki/Downloads)
+* or [install VmWare](http://www.vmware.com/de/products/player)
+* [Install Vagrant](https://www.vagrantup.com/downloads.html)
+
 
 ## Install vagrant plugins
     vagrant plugin install vagrant-vbguest
