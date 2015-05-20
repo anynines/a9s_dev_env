@@ -47,6 +47,8 @@ Vagrant.configure(2) do |config|
     chef.add_recipe "rabbitmq::default"
     chef.add_recipe "rabbitmq::mgmt_console"
     chef.add_recipe "golang::default"
+    chef.add_recipe "java::default"
+    chef.add_recipe "maven::default"
 
     # Install Ruby 2.2.1 and Bundler
     chef.json = {
@@ -68,6 +70,13 @@ Vagrant.configure(2) do |config|
       rabbitmq: {
         web_console_ssl: true,
         web_console_ssl_port: 15671
+      },
+      java: {
+        oracle: {
+          accept_oracle_download_terms: true
+        },
+        install_flavor: "oracle",
+        jdk_version: 8
       },
       postgresql: {
         version: '9.3',

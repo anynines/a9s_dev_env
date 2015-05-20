@@ -20,15 +20,27 @@ All services can be accessed from the host system using their default ports and 
 
 
 ## Install vagrant plugins
+
     vagrant plugin install vagrant-vbguest
     vagrant plugin install vagrant-librarian-chef-nochef
 
 # Startup
 
+    # clone the repo
+    git clone https://github.com/anynines/a9s_dev_env.git
+
+    # enter the directory
+    cd a9s_dev_env
+
+    # start the vagrant machine
     vagrant up
+
+    # ssh into the machine when the provisioning process has finished
     vagrant ssh
 
 # Reprovisioning
+
+When making changes to the Cheffile and Vagrantfile please reprovision the VM using the following commands:
 
     vagrant up
     vagrant provision
@@ -40,14 +52,20 @@ Put your files (sources, ...) in this folder to be able to access the files from
 
 # Default Service Authentication
 
-* PostgreSQL: postgres -> test123!
+* PostgreSQL: User: postgres ; password: test123!
 * MongoDB: auth disabled -> all connections accepted
 * Redis: auth disabled -> all connections accepted
-* RabbitMQ: guest -> guest
+* RabbitMQ: User: guest ; password: guest
 
 # Troubleshooting
 
 ## Errors on reprovisioning
 
+Error message: "Shared folders that chef requires are missing ...."
+
     rm .vagrant/machines/default/virtualbox/synced_folders
     vagrant reload --provision
+
+## Windows Command log_filename
+
+Please execute the commands above in a command line instance with administrator rights.
