@@ -20,11 +20,14 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 5432, host: 5432
   # mongodb
   config.vm.network :forwarded_port, guest: 27017, host: 27017
+  config.vm.network :forwarded_port, guest: 28017, host: 28017
   # redis
   config.vm.network :forwarded_port, guest: 6379, host: 6379
   # rabbitmq
   config.vm.network :forwarded_port, guest: 5672, host: 5672
   config.vm.network :forwarded_port, guest: 15671, host: 15671
+  config.vm.network :forwarded_port, guest: 25672, host: 25672
+
 
 
   # synced folders
