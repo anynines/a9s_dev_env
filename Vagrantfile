@@ -83,26 +83,40 @@ Vagrant.configure(2) do |config|
         config: {
           log_rotation_age: "1d",
           log_rotation_size: "10MB",
-          log_filename: "postgresql-%Y-%m-%d_%H%M%S.log"
+          log_filename: "postgresql-%Y-%m-%d_%H%M%S.log",
+          listen_addresses: '0.0.0.0'
         },
-        # pg_hba: [
-        #   {
-        #     comment: '# allow all local connections without auth',
-        #     type: 'local',
-        #     db: 'all',
-        #     user: 'all',
-        #     addr: nil,
-        #     method: 'trust'
-        #   },
-        #   {
-        #     comment: '# allow all connections from outside via md5 passwords',
-        #     type: 'host',
-        #     db: 'all',
-        #     user: 'all',
-        #     addr: nil,
-        #     method: 'md5'
-        #   }
-        # ],
+        pg_hba: [
+          {
+            type: 'local',
+            db: 'all',
+            user: 'postgres',
+            addr: nil,
+            method: 'ident'
+          },
+          {
+            type: 'local',
+            db: 'all',
+            user: 'all',
+            addr: nil,
+            method: 'ident'
+          },
+          {
+            type: 'local',
+            db: 'all',
+            user: 'all',
+            addr: nil,
+            method: 'peer'
+          },
+          {
+            comment: '# allow outside connections from all hosts using md5 passwords',
+            type: 'host',
+            db: 'all',
+            user: 'all',
+            addr: '0.0.0.0/0',
+            method: 'md5'
+          }
+        ],
         password: {
           postgres: 'test123!'
         }
