@@ -1,6 +1,6 @@
 # Description
 
-This repo serves as a starting point to manage a general development environment for creating ruby and go applications. It provides service installations to be accessed by your applications.
+This repo serves as a starting point to manage a general development environment for creating ruby, java, nodejs and go applications. It provides service installations to be accessed by your applications.
 
 # Services
 
