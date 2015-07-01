@@ -86,3 +86,9 @@ Error message: "Shared folders that chef requires are missing ...."
 ## Windows Command log_filename
 
 Please execute the commands above in a command line instance with administrator rights.
+
+## SSH into the machine without using the vagrant client
+
+You can use a normal ssh client (command line, putty, ...) to ssh into the virtual machine. The user and password is vagrant.
+
+    ssh -p 2222  vagrant@127.0.0.1 # pw: vagrant
